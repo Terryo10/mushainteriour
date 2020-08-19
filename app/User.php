@@ -53,7 +53,7 @@ class User extends Authenticatable
         //   know is always an admin ID?
 
         if (       $this->id === 1
-             && $this->email === "your_admin_user@your_site.com"
+             && $this->email === "tapiwatererai395@gmail.com"
            ){
 
            // return true so this user CAN edit/post/delete
@@ -68,9 +68,23 @@ class User extends Authenticatable
         return false;
     }
 
-    protected $with = [ 'cart',];
+    protected $with = [ 'cart','temporaryAddress','orders'];
+
+
     public function cart()
     {
         return $this->hasOne('App\cart');
     }
+
+    public function temporaryAddress()
+    {
+        return $this->hasOne('App\temporaryAddress');
+
+    }
+
+    public function orders()
+    {
+        return $this->hasMany('App\orders');
+    }
+
 }

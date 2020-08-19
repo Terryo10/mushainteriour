@@ -5,9 +5,14 @@ namespace App\Http\Controllers;
 use App\cart;
 use Illuminate\Http\Request;
 use Auth;
+use App\temporaryAddress;
 use App\product;
 use App\cart_items;
 use Paynow\Payments\Paynow as Paynow;
+use Braintree;
+use App\delivery;
+use App\orders;
+use App\order_items;
 
 class CartController extends Controller
 {
@@ -162,57 +167,187 @@ class CartController extends Controller
         //
     }
 
-    public  $integration_key = '96bd2e52-0108-4b72-b35f-8f128d056fe9';
-    public  $integration_id = '7741';
-
-    public function mobilePaymentweb(Request $request)
+    public function shippingChange($id)
     {
-        $user = auth::user();
+        $shipping = temporaryAddress::find($id);
+        $shipping->delete();
 
-        $paynow = new Paynow(
-            $this->integration_id,
-            $this->integration_key,
-            'http://booze.co.zw/gateways/paynow/update',
-            'http://booze.co.zw/return?gateway=paynow'
-        );
-        $order = new order();
-        $order->status = 'ordered';
-        $order->user_id = $user->id;
-        $order->save();
+        return redirect('/shipping_details')
+            ->with('success', 'Change your address here');
 
-        if ($order_items = $user->cart->cart_items) {
-            $payment = $paynow->createPayment('ORDER' . $order->id, $user->email);
+    }
 
+    public function shippingStore(Request $request)
+    {
+        $temporaryAddress = auth::user()->temporaryAddress;
+        if ($temporaryAddress == !null) {
+           
+        } else {
+            $id = auth::user()->id;
+            $temporary = new temporaryAddress();
+            $temporary->user_id = $id;
+            $temporary->firstname = $request->input('firstname');
+            $temporary->lastname = $request->input('lastname');
+            $temporary->state = $request->input('state');
+            $temporary->zip = $request->input('zip');
+            $temporary->company = $request->input('company');
+            $temporary->phone = $request->input('phone');
+            $temporary->city = $request->input('city');
+            $temporary->country = $request->input('country');
+            $temporary->address = $request->input('address');
+            $temporary->email = auth::user()->email;
+            $temporary->save();
+
+            return redirect('/shipping_details')->with('success', 'Address Set');
+
+        }
+
+
+
+    }
+
+    public function visapay(){
+        $temporaryAddress = auth::user()->temporaryAddress;
+
+
+            if ($temporaryAddress == !null) {
+             
+                $total = $this->totalweb();
+                $gateway = $this->gateway();
+                $token = $gateway->ClientToken()->generate();
+                return view('pay')
+                    ->with('token', $token)
+                    ->with('total', $total);
+            } else {
+                return redirect('/shipping_details')->with('error', 'You dont have a shipping addresss');
+            }
+      
+        //check if user has a temporary address 
+        //token pass 
+        // pass price 
+        // pass designated address 
+     
+
+    }
+
+
+    public function gateway()
+    {
+        $gateway = new Braintree\Gateway([
+            'environment' => config('services.braintree.environment'),
+            'merchantId' => config('services.braintree.merchant_id'),
+            'publicKey' => config('services.braintree.public_key'),
+            'privateKey' => config('services.braintree.private_key'),
+        ]);
+
+        return $gateway;
+
+    }
+
+    public function shipping()
+    {
+        $temporaryAddress = auth::user()->temporaryAddress;
+        return view('shipping')
+            ->with('temporaryAddress', $temporaryAddress);
+    }
+
+    public function checkoutBraintree(Request $request)
+    {
+       
+     
+        $total = $this->totalweb();
+//        return $cartItem;
+        //        $amount = $checkoutComponent->
+        $user = Auth::user();
+        $gateway = $this->gateway();
+        $amount = $total;
+        $nonce = $request->payment_method_nonce;
+
+        if ($user->cart == null) {
+            return redirect('/cart');
+        }
+        $result = $gateway->transaction()->sale([
+            'amount' => $amount,
+            'paymentMethodNonce' => $nonce,
+            'options' => [
+                'submitForSettlement' => true,
+            ],
+        ]);
+        // dd($result);
+        //shippingAmount
+        /// || !is_null($result->transaction)
+        if ($result->success) {
+            $transaction = $result->transaction;
+            $cart = $user->cart;
+            // dd($transaction);
+            $temporaryAddress = auth::user()->temporaryAddress;
+            $delivery = new delivery();
+            $delivery->user_id = Auth::id();
+            $delivery->address = $temporaryAddress->address;
+            $delivery->company = $temporaryAddress->company;
+            $delivery->phone = $temporaryAddress->phone;
+            $delivery->firstname = $temporaryAddress->firstname;
+            $delivery->lastname = $temporaryAddress->lastname;
+            $delivery->city = $temporaryAddress->city;
+            $delivery->state = $temporaryAddress->state;
+            $delivery->transaction_ref = $transaction->id;
+            $delivery->country = $temporaryAddress->country;
+            $delivery->save();
+            $fetchdelivery = delivery::where('transaction_ref', $transaction->id)->first();
+
+            //begin orders
+            $order = new orders();
+            $order->user_id = Auth::id();
+            $order->delivery_id = $fetchdelivery->id;
+            $order->transaction_ref = $transaction->id;
+            $order->paymentStatus = $transaction->status;
+            $order->status = 'ordered';
+            $order->save();
+
+            $orderSaved = $order;
+            $order_items = $user->cart->cart_items ;
             foreach ($order_items as $item) {
                 $order_item = new order_items();
                 $order_item->quantity = $item->quantity;
+                $order_item->status = 'ordered';
+                $order_item->price = $item->product['price'];
                 $order_item->product_id = $item->product_id;
-                $order_item->price = $item->price;
-                $order_item->order_id = $order->id;
+                $order_item->order_id = $orderSaved->id;
                 $order_item->save();
-                $payment->add($item->product->title, $item->price * $item->quantity);
+          
             }
-        }
+        
+       
 
-        $response = $paynow->sendMobile($payment, $request->input('phone_number'), $request->input('method'));
+        
+            foreach ($order_items as $item) {
+                $productOriginalQuantity = $item->product->quantity;
+                //Subtract quantity
+                $product = product::findOrFail($item->product->id);
+                $product->update([
+                    'quantity' => $productOriginalQuantity - $item->quantity,
+                ]);
+            }
+           
 
-        if ($response->success) {
-            $order->pollurl = $response->pollUrl();
-            $order->save();
-            $cart = cart::find($user->cart->id);
+
             $cart->delete();
 
-            return response()->json([
-                'success' => true,
-                'message' => $response->instructions(),
-                'order' => $order
-            ]);
-            //Redirect::route('home')->with('success', 'payment made check status in oders');
+
+            return redirect('/home')->with('success', 'Transaction Successful: The Transaction Reference is' . $transaction->id);
+
         } else {
-            return response()->json([
-                'success' => false,
-                'message' => $response->error
-            ]);
+            $errorString = "";
+
+            foreach ($result->errors->deepAll() as $error) {
+                $errorString .= 'Error: ' . $error->code . ": " . $error->message . "\n";
+            }
+
+            return back()->withErrors('An Error Occurred', $result->message);
+
         }
+
     }
 }
+
+

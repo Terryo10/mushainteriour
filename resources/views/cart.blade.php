@@ -57,18 +57,12 @@
           <li>Total Price USD :$ {{$total}}</li>
            @if(!empty($cart_items))
          <li>
-         <a><div class="uk-width-1-1 uk-width-auto@s">
+         <a href="/paypal_visa"><div class="uk-width-1-1 uk-width-auto@s">
                 <input type="submit" value="Checkout via PAYPAL | MASTERCARD | VISA" class="btn btn-dark">
               </div>
             </a>
         </li>
         <br>
-          <li>Total Price RTGS :$ {{$total}}</li>
-        <li><a href="/checkout/paynow"><div class="uk-width-1-1 uk-width-auto@s">
-                <input type="submit" value="Checkout with ECOCASH | ONEMONEY" class="btn btn-dark">
-              </div>
-            </a>
-        </li>
            @else
 <li><a href="/shop"><div class="uk-width-1-1 uk-width-auto@s">
                 <input value="CONTINUE SHOPPING" class="uk-button uk-button-large uk-button-warning">

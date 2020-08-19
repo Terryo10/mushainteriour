@@ -8,7 +8,7 @@
     <title>{{ config('app.name', 'Laravel')}}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
-      
+    <link href="{{asset('fontawsome/css/all.css')}}" rel="stylesheet">
 <!-- This site is optimized with the Yoast SEO plugin v7.7.3 - https://yoast.com/wordpress/plugins/seo/ -->
 <meta name="description" content="Interior Designers and Hospitality Designers London - Goddard Littlefair: interior design, hospitality design and residential interior designers"/>
 <link rel="canonical" href="index.html" />
@@ -41,7 +41,7 @@
     <meta name="msapplication-TileImage" content="/win8-tile-icon.png">
     <meta name="msapplication-TileColor" content="#ffffff">
       </head>
-  <body id="body" class="home page-template-default page page-id-4 body">
+  <body id="body" class="home page-template-default page page-id-4 body" style="background-color:#ffffff;">
   <div id="app">
     <div class="page-wrapper">
         <header class="header">
@@ -50,14 +50,15 @@
             </a>
             <a class="nav-toggle" href="#"><span class="navicon"></span>Menu</a>
             <nav class="main-nav" id="main-nav">
-                <ul id="menu-main-menu" class="menu"><li id="menu-item-17" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-17"><a href="/about">About</a>
+                <ul id="menu-main-menu" class="menu">
 
+                        <li id="menu-item-36" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36"><a href="/about">About</a></li>
 <li id="menu-item-43" class="menu-item menu-item-type-post_type_archive menu-item-object-projects menu-item-has-children menu-item-43"><a href="/projects">Projects</a>
 <ul class="sub-menu">
-	<li id="menu-item-48" class="menu-item menu-item-type-taxonomy menu-item-object-project_category menu-item-48"><a href="project/hotel-design/index.html">Hotels</a></li>
-	<li id="menu-item-47" class="menu-item menu-item-type-taxonomy menu-item-object-project_category menu-item-47"><a href="project/bars-restaurants-design/index.html">Bars &#038; Restaurants</a></li>
-	<li id="menu-item-50" class="menu-item menu-item-type-taxonomy menu-item-object-project_category menu-item-50"><a href="project/residential-interior-designers/index.html">Residential</a></li>
-	<li id="menu-item-51" class="menu-item menu-item-type-taxonomy menu-item-object-project_category menu-item-51"><a href="project/spa-design/index.html">Spas &#038; Wellness Centres</a></li>
+    @foreach ($projectcat as $proj )
+<li id="menu-item-48" class="menu-item menu-item-type-taxonomy menu-item-object-project_category menu-item-48"><a href="/projects_cat/{{$proj->id}}">{{$proj->name}}</a></li>
+    @endforeach
+	
 </ul>
 </li>
 <li id="menu-item-36" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36"><a href="/blog">Blog</a></li>

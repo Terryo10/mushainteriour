@@ -43,7 +43,7 @@
                             @foreach ($products as $items)
                             <tr>
                             <th scope="row">{{$items->name}}</th>
-                            <th><img class="card-img-top"  style="height:100px; width:100px;" src="/storage/product_images/{{$items->firstImage}}" alt="Card image cap"></th>
+                            <th><img class="card-img-top"  style="height:100px; width:100px;" src="/storage/product_images/{{$items->imagePath}}" alt="Card image cap"></th>
                               <th>${{$items->price}}</th>
                             <td><a href="/product/{{$items->id}}"><button  class="btn btn-success" >View </button></a></td>
                             <td>

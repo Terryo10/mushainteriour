@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\projects;
+use App\projectCategory;
 use Illuminate\Http\Request;
 
 class ProjectsController extends Controller
@@ -14,7 +15,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        //
+        $project = projects::all();
+        return view('admin.projects.index')->with('project',$project);
     }
 
     /**
@@ -24,7 +26,9 @@ class ProjectsController extends Controller
      */
     public function create()
     {
-        //
+        $categories = projectCategory::all();
+        return view('admin.projects.create')
+        ->with('categories',$categories);
     }
 
     /**
@@ -35,7 +39,37 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $this->validate($request, [
+            'name' => 'required',
+            'image' => 'image|nullable|max:1999',
+        ]);
+
+        //Handle Images Uploads
+        if ($request->hasFile('image')) {
+            //Get filename with extension
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            //Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            //Getting file extension
+            $extension = $request->file('image')->getCLientOriginalExtension();
+            //Stored name
+            $fileNameToStore = $filename . '_' . time() . '_.' . $extension;
+            //Uploading Thumbnail
+
+            //model->
+            $request->file('image')->storeAs('public/project_images', $fileNameToStore);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
+        }
+
+        $category = new projects();
+        $category->name = $request->input('name');
+        $category->description = $request->input('description');
+        $category->project_category_id = $request->input('category_id');
+        $category->imagePath = $fileNameToStore;
+        $category->save();
+        return redirect('/projects')->with('success', 'Project Created Successfully');
     }
 
     /**

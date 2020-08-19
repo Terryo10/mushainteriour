@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\cart;
 use App\category;
+use App\projectCategory;
 use Auth;
 
 class AppServiceProvider extends ServiceProvider
@@ -54,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
                 }
 
             $totalwebglobal = $this->totalwebglobal();
-
+            $projectcat = projectCategory::all();
             $categoryese = category::all();
             $quantity = 0;
             // dd($user);
@@ -77,7 +78,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with('quantity', $quantity)
                 ->with('categoryese', $categoryese)
                 ->with('cartitemsglobal', $cartitemsglobal)
-                ->with('totalwebglobal', $totalwebglobal);
+                ->with('totalwebglobal', $totalwebglobal)
+                ->with('projectcat',$projectcat);
         });
 
 

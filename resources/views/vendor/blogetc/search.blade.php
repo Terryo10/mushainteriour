@@ -6,8 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h2>Search Results for {{ $query }}</h2>
-
-            @forelse($searchResults as $result)
+            @forelse($search_results as $result)
                 @if($result->indexable && is_a($result->indexable,\WebDevEtc\BlogEtc\Models\Post::class) && $result->indexable->isPublic())
 {{--                    TODO--}}
 {{--                    && Gate::allows('view-blog-etc-post', $result->indexable)--}}

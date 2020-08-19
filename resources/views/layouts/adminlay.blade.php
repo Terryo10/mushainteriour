@@ -72,24 +72,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         Dashboard
                     </a>
                 </li>
-                 <li>
-                    <a href="/slider" >
+               
+                
+                <li>
+                    <a href="/projects_cat" >
                         <i class="fas fa-laptop"></i>
-                       Slider Manager
+                       Project Category
                     </a>
                    
                 </li>
                  <li>
-                    <a href="/rates">
-                        <i class="far fa-envelope"></i>
-                        Rates RTGS  
-                        
-                    </a>
-                </li>
-                 <li>
                     <a href="/projects" >
                         <i class="fas fa-laptop"></i>
-                       Projects Manager
+                       Projects 
                     </a>
                    
                 </li>

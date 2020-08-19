@@ -26,11 +26,17 @@ Route::get('checkout/paynow','pagesController@eco')->middleware('auth');
 Route::post('make_payment', 'CartController@mobilePaymentweb')->name('make_payment');
 Route::get('shop','pagesController@shop');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('about','pagesController@about');
 Route::get('admin','pagesController@admin');
 Route::resource('category','CategoryController');
 Route::resource('products','ProductController')->middleware('auth');
 Route::resource('projects','ProjectsController');
-
+Route::resource('projects_cat','ProjectCategoryController');
+Route::get('/paypal_visa','CartController@visapay')->middleware('auth');
+Route::get('/shipping_details','CartController@shipping')->middleware('auth');
+Route::get('/shipping_change/{id}', 'CartController@shippingChange')->middleware('auth');
+Route::post('/shipping/store', 'CartController@shippingStore')->name('shipping.store')->middleware('auth');
+Route::post('/pay','CartController@checkoutBraintree')->name('pay.braintree')->middleware('auth');
 //page route will go here 
 
 

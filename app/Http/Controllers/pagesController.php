@@ -27,5 +27,9 @@ class pagesController extends Controller
     public function eco(){
         return view('checkoutRtgs');
     }
+
+    public function about(){
+        return view('about');
+    }
   
 }

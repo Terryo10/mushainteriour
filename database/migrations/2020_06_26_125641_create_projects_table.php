@@ -15,6 +15,11 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('project_category_id');
+            $table->string('name');
+            $table->text('description');
+            $table->string('imagePath');
+            $table->foreign('project_category_id')->references('id')->on('project_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
