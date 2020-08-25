@@ -21,15 +21,13 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:description" content="Interior Designers and Hospitality Designers London - Goddard Littlefair: interior design, hospitality design and residential interior designers" />
 <meta name="twitter:title" content="Interior Designers London | Hospitality Designers | Luxury Interior Design" />
-<script type='application/ld+json'>{"@context":"https:\/\/schema.org","@type":"WebSite","@id":"#website","url":"http:\/\/www.goddardlittlefair.com\/","name":"Goddard Littlefair","potentialAction":{"@type":"SearchAction","target":"http:\/\/www.goddardlittlefair.com\/?s={search_term_string}","query-input":"required name=search_term_string"}}</script>
-<script type='application/ld+json'>{"@context":"https:\/\/schema.org","@type":"Organization","url":"http:\/\/www.goddardlittlefair.com\/","sameAs":[],"@id":"http:\/\/www.goddardlittlefair.com\/#organization","name":"Goddard Littlefair","logo":"http:\/\/www.goddardlittlefair.com\/wp-content\/uploads\/2016\/03\/logo.png"}</script>
 <!-- / Yoast SEO plugin. -->
   <!-- Styles  laravel bootstrap-->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
  <script src="{{ asset('js/app.js') }}" defer></script>
 <link rel='dns-prefetch' href='http://s.w.org/' />
-<link rel="alternate" type="application/rss+xml" title="Goddard Littlefair &raquo; Feed" href="feed/index.html" />
-<link rel="alternate" type="application/rss+xml" title="Goddard Littlefair &raquo; Comments Feed" href="comments/feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Musha Interior &raquo; Feed" href="feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Musha Interior &raquo; Comments Feed" href="comments/feed/index.html" />
 <link rel='stylesheet' id='wp-pagenavi-css'  href='{{asset('front/wp-content/plugins/wp-pagenavi/pagenavi-css44fd.css?ver=2.70')}}' type='text/css' media='all' />
 <link rel='stylesheet' id='xtheme-layout-css'  href='{{asset('front/wp-content/themes/GoddardLittlefair2016/css/layout5152.css?ver=1.0')}}' type='text/css' media='all' />
 <script type='text/javascript' src='{{asset('front/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4')}}'> </script>
@@ -64,6 +62,11 @@
 <li id="menu-item-36" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-36"><a href="/blog">Blog</a></li>
 <li id="menu-item-52" class="menu-item menu-item-type-post_type_archive menu-item-object-awards menu-item-52"><a href="/shop">Shop</a></li>
 <li id="menu-item-44" class="menu-item menu-item-type-post_type_archive menu-item-object-press menu-item-44"><a href="/contact">Contact</a></li>
+@guest
+
+    @else
+    <li id="menu-item-44" class="menu-item menu-item-type-post_type_archive menu-item-object-press menu-item-44"><a href="/home">My Account</a></li>
+    @endguest
 <li id="menu-item-44" class="menu-item menu-item-type-post_type_archive menu-item-object-press menu-item-44"><a href="/cart">Cart({{ $quantity ?? 0 }})</a></li>
 </ul>                <a class="content-toggle" href="#"></a>
                             </nav>
@@ -74,7 +77,19 @@
 </main>
         <footer class="footer">
             <div class="footer-container">
-                <a class="footer-text" href="/work">Work for Us</a>
+                @guest
+                <a class="footer-text" href="{{ route('login') }}">{{ __('Login') }}</a>
+                @else
+                <a class="footer-text" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                              document.getElementById('logout-form').submit();">
+                 {{ __('Logout') }}
+             </a>
+
+             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                 @csrf
+             </form>
+                @endif
                 <ul class="social-navigation">
                     <li class="menu-item"><a href="https://twitter.com/goddardlittle?lang=en"></a></li>
                     <li class="menu-item"><a href="https://www.linkedin.com/company/6065616?trk=tyah&amp;trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A6065616%2Cidx%3A2-1-3%2CtarId%3A1453389051140%2Ctas%3AGoddard%20Littlefair"></a></li>

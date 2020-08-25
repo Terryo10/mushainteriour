@@ -239,7 +239,6 @@ class CartController extends Controller
             'publicKey' => config('services.braintree.public_key'),
             'privateKey' => config('services.braintree.private_key'),
         ]);
-
         return $gateway;
 
     }
@@ -253,8 +252,6 @@ class CartController extends Controller
 
     public function checkoutBraintree(Request $request)
     {
-       
-     
         $total = $this->totalweb();
 //        return $cartItem;
         //        $amount = $checkoutComponent->
@@ -312,7 +309,7 @@ class CartController extends Controller
                 $order_item->status = 'ordered';
                 $order_item->price = $item->product['price'];
                 $order_item->product_id = $item->product_id;
-                $order_item->order_id = $orderSaved->id;
+                $order_item->orders_id= $orderSaved->id;
                 $order_item->save();
           
             }

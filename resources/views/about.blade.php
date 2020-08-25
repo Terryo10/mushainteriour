@@ -26,7 +26,7 @@
     <p class="lead">Most environments do not speak a story of what they entail and who they belong to. Consequently, there is a standard look in many living spaces whether home, store or office showing a lack within personal interpretations and expressions of spaces. Musha Interior as an integral part of the design and development team, seeks to bridge the gap between a space that simply delivers its function and one with the right opulence and style making it comfortable to a level that will inspire those experiencing the environments. </p>  
     </div>
       <div class="col-md-5">
-        <img src="{{asset('pics/nice.jpg')}}" style="width:500; height:500;"> 
+        <img class="img-fluid" src="{{asset('pics/nice.jpg')}}" style="width:500; height:500;"> 
       </div>
     </div>
 
@@ -42,7 +42,7 @@
       <span></span>
     </div>
       <div class="col-md-5 order-md-1">
-      <img src="{{asset('pics/mushaint.jpg')}}" style="width:500; height:500;"> 
+      <img  class="img-fluid" src="{{asset('pics/mushaint.jpg')}}" style="width:500; height:500;"> 
       </div>
     </div>
 

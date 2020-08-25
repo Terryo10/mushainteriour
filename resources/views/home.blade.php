@@ -1,22 +1,29 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard/ Orders</div>
+            @foreach ($orders as $items )
+                 <div class="card">
+                 <div class="card-header">Order id : {{$items->id}} & Order Transaction Ref ({{$items->transaction_ref}})</div>
 
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                   @foreach ($items->order_items as $lols)
+                   <div class="uk-width-auto">
+                    <img class="uk-comment-avatar uk-border-circle" src="/storage/product_images/{{$lols->product['imagePath']}}" width="50" height="50" alt="Product Image">
+                  </div>
+                  <br>
+                  <div>
+                <p>  {{$lols->product['name']}}   X{{$lols->quantity}}   For ${{$lols->product->price}}</p>
+                  </div>
 
-                    You are logged in!
+                   @endforeach
                 </div>
             </div>
+            <br>
+            @endforeach
+           
         </div>
     </div>
 </div>
