@@ -109,6 +109,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </a>
                 </li>
                 <li>
+                    <a href="/blog_admin">
+                        <i class="far fa-envelope"></i>
+                        Blog Admin
+                        
+                    </a>
+                </li>
+                <li>
                     <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false">
                         <i class="fas fa-users"></i>
                         User Preferences

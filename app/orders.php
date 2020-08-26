@@ -13,4 +13,8 @@ class orders extends Model
     {
         return $this->hasMany(items::class);
     }
+
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

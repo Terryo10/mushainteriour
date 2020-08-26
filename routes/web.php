@@ -27,11 +27,9 @@ Route::post('make_payment', 'CartController@mobilePaymentweb')->name('make_payme
 Route::get('shop','pagesController@shop');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('about','pagesController@about');
-Route::get('admin','pagesController@admin');
-Route::resource('category','CategoryController');
-Route::resource('products','ProductController')->middleware('auth');
-Route::resource('projects','ProjectsController');
-Route::resource('projects_cat','ProjectCategoryController');
+
+
+
 Route::get('/paypal_visa','CartController@visapay')->middleware('auth');
 Route::get('/shipping_details','CartController@shipping')->middleware('auth');
 Route::get('/shipping_change/{id}', 'CartController@shippingChange')->middleware('auth');
@@ -39,7 +37,15 @@ Route::post('/shipping/store', 'CartController@shippingStore')->name('shipping.s
 Route::post('/pay','CartController@checkoutBraintree')->name('pay.braintree')->middleware('auth');
 //page route will go here 
 
-
+Route::group(['middleware' => ['IsAdmin','auth']],function(){
 
 //admin routes will go here
 Route::get('rates','RatesController@index');
+Route::get('admin','pagesController@admin');
+Route::resource('projects','ProjectsController');
+Route::resource('category','CategoryController');
+Route::resource('projects_cat','ProjectCategoryController');
+Route::resource('products','ProductController')->middleware('auth');
+Route::get('orders','OrdersController@index');
+Route::get('parent/{id}','OrdersController@parent');
+});
