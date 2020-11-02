@@ -10,16 +10,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link href="{{asset('fontawsome/css/all.css')}}" rel="stylesheet">
 <!-- This site is optimized with the Yoast SEO plugin v7.7.3 - https://yoast.com/wordpress/plugins/seo/ -->
-<meta name="description" content="Interior Designers and Hospitality Designers London - Goddard Littlefair: interior design, hospitality design and residential interior designers"/>
-<link rel="canonical" href="index.html" />
+<meta name="description" content="redefine Interior Design. We seek to drift away from the standard and monotonous way of decorating through incorporating “the best of both worlds”. To harness our deep creative resources, the highest caliber trade professionals and artisans."/>
+<link rel="canonical" href="/" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Interior Designers London | Hospitality Designers | Luxury Interior Design" />
-<meta property="og:description" content="Interior Designers and Hospitality Designers London - Goddard Littlefair: interior design, hospitality design and residential interior designers" />
-<meta property="og:url" content="http://www.goddardlittlefair.com/" />
-<meta property="og:site_name" content="Goddard Littlefair" />
+<meta property="og:title" content="Interior Designers Zimbabwe | Hospitality Designers | Luxury Interior Design" />
+<meta property="og:description" content="Interior Designers and Hospitality Designers Zimbabwe -  interior design, hospitality design and residential interior designers" />
+<meta property="og:url" content="http://www.mushainterior.co.zw/" />
+<meta property="og:site_name" content="Musha Interiors" />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:description" content="Interior Designers and Hospitality Designers London - Goddard Littlefair: interior design, hospitality design and residential interior designers" />
+<meta name="twitter:description" content="Interior Designers and Hospitality Designers Zimbabwe Harare - : interior design, hospitality design and residential interior designers" />
 <meta name="twitter:title" content="Interior Designers London | Hospitality Designers | Luxury Interior Design" />
 <!-- / Yoast SEO plugin. -->
   <!-- Styles  laravel bootstrap-->
@@ -67,7 +67,6 @@
     @else
     <li id="menu-item-44" class="menu-item menu-item-type-post_type_archive menu-item-object-press menu-item-44"><a href="/home">My Account</a></li>
     @endguest
-<li id="menu-item-44" class="menu-item menu-item-type-post_type_archive menu-item-object-press menu-item-44"><a href="/cart">Cart({{ $quantity ?? 0 }})</a></li>
 </ul>                <a class="content-toggle" href="#"></a>
                             </nav>
         </header>

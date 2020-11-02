@@ -37,15 +37,22 @@ Route::post('/shipping/store', 'CartController@shippingStore')->name('shipping.s
 Route::post('/pay','CartController@checkoutBraintree')->name('pay.braintree')->middleware('auth');
 //page route will go here 
 
-Route::group(['middleware' => ['IsAdmin','auth']],function(){
+// Route::group(['middleware' => ['IsAdmin','auth']],function(){
 
-//admin routes will go here
-Route::get('rates','RatesController@index');
-Route::get('admin','pagesController@admin');
-Route::resource('projects','ProjectsController');
-Route::resource('category','CategoryController');
+// //admin routes will go here
+// Route::get('rates','RatesController@index');
+// Route::get('admin','pagesController@admin');
+// Route::resource('projects','ProjectsController');
+// Route::resource('category','CategoryController');
+//
+Route::resource('product','ProductController');
+// Route::get('orders','OrdersController@index');
+// Route::get('parent/{id}','OrdersController@parent');
+// });
 Route::resource('projects_cat','ProjectCategoryController');
-Route::resource('products','ProductController')->middleware('auth');
-Route::get('orders','OrdersController@index');
-Route::get('parent/{id}','OrdersController@parent');
+Route::resource('projects','ProjectsController');
+Route::Post('placeorder','ProductController@store')->name('place.order');
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
 });

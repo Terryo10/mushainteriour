@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\aboutSections;
 use Illuminate\Http\Request;
 use App\product;
 use Illuminate\Support\Facades\View;
@@ -29,7 +30,8 @@ class pagesController extends Controller
     }
 
     public function about(){
-        return view('about');
+        $sections = aboutSections::all();
+        return view('about')->with('sections',$sections);
     }
   
 }

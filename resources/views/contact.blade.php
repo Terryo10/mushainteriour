@@ -11,38 +11,11 @@
         a matter of hours to help you.</p>
 
     <div class="row">
-        <div class="col-md-8">
-        <form>
-           
-             
-            <div class="row">
-                <div class="col-md-12">
-                    <input type="email" class="form-control" placeholder="Email" required>
-                  </div>
-                  <br>
-                  <br>
-              <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="First name" required>
-              </div>
-              <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Last name"  required>
-              </div>
-            </div>
-           
-            
-
-            <div class="form-group">
-               <br>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter Your Text Here" required></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary mb-2">Send</button>
-          </form>
         
-        </div>
         <!--Grid column-->
 
         <!--Grid column-->
-        <div class="col-md-3 text-center">
+        <div class="col-md-12 text-center">
             <ul class="list-unstyled mb-0">
                 <li><i class="fas fa-map-marker-alt fa-2x"></i>
                     <p>61 Samora Machel 5th Floor Pearl House </p>

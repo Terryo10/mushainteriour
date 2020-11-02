@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\product;
 use App\category;
+use App\placedOrders;
 use Image;
 use Auth;
 use Illuminate\Support\Facades\Storage;
@@ -43,45 +44,55 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'firstImage' => 'required',
-            'firstImage.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        // return $request;
+        $placedOrder = new placedOrders();
+        $placedOrder->name = $request->input('name');
+        $placedOrder->phone = $request->input('phone');
+        $placedOrder->info = $request->input('info');
+        $placedOrder->quantity = $request->input('quantity');
+        $placedOrder->product_id = $request->input('product_id');
+        $placedOrder->save();
 
-        //Handle Images Uploads
-        if ($request->hasFile('firstImage')) {
-            //append file to variable
-            $image = $request->file('firstImage');
-            //Get filename with extension
-            $filenameWithExt = $image->getClientOriginalName();
-            //Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            //Getting file extension
-            $extension = $image->getCLientOriginalExtension();
-            //Stored name
-            // $hashedName = hash_file('md5', $image->path());
-            $malobolo = $filename . '_' . time() . '_.' . $extension;
-            //Uploading Thumbnail and resizing
+        return redirect()->back()->with('success',"$request->name your Order has been places we will contact you shortly");
+        // $this->validate($request, [
+        //     'firstImage' => 'required',
+        //     'firstImage.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
 
-            $img = Image::make($image)->resize(250, 250)->encode('jpg');
-            //    ->save(public_path('/product_images'.$malobolo
-            //    Storage::disk('local')->putFile('/product_images'.'/'.$malobolo, $img);
-            Storage::put('/public/product_images' . '/' . $malobolo, $img->__toString());
+        // //Handle Images Uploads
+        // if ($request->hasFile('firstImage')) {
+        //     //append file to variable
+        //     $image = $request->file('firstImage');
+        //     //Get filename with extension
+        //     $filenameWithExt = $image->getClientOriginalName();
+        //     //Get just filename
+        //     $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+        //     //Getting file extension
+        //     $extension = $image->getCLientOriginalExtension();
+        //     //Stored name
+        //     // $hashedName = hash_file('md5', $image->path());
+        //     $malobolo = $filename . '_' . time() . '_.' . $extension;
+        //     //Uploading Thumbnail and resizing
 
-        } else {
-            $malobolo = 'noimage.jpg';
-        }
-        $user = auth::user()->id;
-        $product = new product;
-        $product->name = $request->input('name');
-        $product->imagePath = $malobolo;
-        $product->price = $request->input('price');
-        $product->quantity = $request->input('qty');
-        $product->description = $request->input('description');
-        $product->user_id = $user;
-        $product->category_id = $request->input('category_id');
-        $product->save();
-        return redirect('/products')->with('success', 'Product Created Successfully');
+        //     $img = Image::make($image)->resize(250, 250)->encode('jpg');
+        //     //    ->save(public_path('/product_images'.$malobolo
+        //     //    Storage::disk('local')->putFile('/product_images'.'/'.$malobolo, $img);
+        //     Storage::put('/public/product_images' . '/' . $malobolo, $img->__toString());
+
+        // } else {
+        //     $malobolo = 'noimage.jpg';
+        // }
+        // $user = auth::user()->id;
+        // $product = new product;
+        // $product->name = $request->input('name');
+        // $product->imagePath = $malobolo;
+        // $product->price = $request->input('price');
+        // $product->quantity = $request->input('qty');
+        // $product->description = $request->input('description');
+        // $product->user_id = $user;
+        // $product->category_id = $request->input('category_id');
+        // $product->save();
+        // return redirect('/products')->with('success', 'Product Created Successfully');
 
     }
 
@@ -93,7 +104,7 @@ class ProductController extends Controller
      */
     public function show(product $product)
     {
-        //
+        return view('product')->with('product', $product);
     }
 
     /**
