@@ -13,8 +13,6 @@
 
    <div class="container marketing">
 
-
-
     <!-- START THE FEATURETTES -->
 
     <hr class="featurette-divider">
@@ -39,30 +37,19 @@
     
     <!-- Three columns of text below the carousel -->
     <div class="row">
-        <div class="col-lg-4">
-        <img class="img-thumbnail" src="{{asset('pics/ghy.png')}}" >
+      @foreach ($team as $team)
+      <div class="col-lg-4">
+      <img class="img-thumbnail" src="/storage/{{$team->image_path}}" >
           <h2>
-            Founder & Senior Designer 
+            {{$team->title}}
             </h2>
-          <p>Sharleen Gapare </p>
+          <p>{{$team->name}} </p>
   
         </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-thumbnail" src="{{asset('pics/ghy1.png')}}" >
-          <h2>     
-            Marketing and Operations Manager    
-            </h2>
-          <p>Fadzai Gunda  </p>
-         
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img class="img-thumbnail" src="{{asset('pics/ghy2.png')}}" >
-          <h2> 
-            Finance Director 
-            </h2>
-          <p>Miriam Gapare</p>
-  
-        </div><!-- /.col-lg-4 -->
+      @endforeach
+        
+       
+       
       </div><!-- /.row -->
 
   </div><!-- /.container -->

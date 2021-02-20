@@ -1,69 +1,25 @@
 @extends('layouts.front') 
 @section('content')
-<div class="content-wrapper">
-    <ul class="main-slideshow" data-fade="true">
-        <li class="main-slide" style="background-image:url(/slider/1.jpg)"></li>
-        <li class="main-slide" style="background-image:url(/slider/2.jpg)">
-            <a href="/" class="caption">
-                <p>Musha</p>
-                <p>Best Interior Design</p>
-                <p>Luxury Simplified</p>
-            </a>
-        </li>
-        <li class="main-slide" style="background-image:url(/slider/3.jpg)">
-            <a href="/" class="caption">
-                <p>Musha</p>
-                <p>Best Interior Design</p>
-                <p>Luxury Simplified</p>
-            </a>
-        </li>
-        <li class="main-slide" style="background-image:url(/slider/6.jpg)">
-            <a href="/" class="caption">
-                <p>Musha</p>
-                <p>Best Interior Design</p>
-                <p>Luxury Simplified</p>
-            </a>
-        </li>
-        <li class="main-slide" style="background-image:url(/slider/5.jpg)">
-            <a href="/" class="caption">
-                <p>Musha</p>
-                <p>Best Interior Design</p>
-                <p>Luxury Simplified</p>
-            </a>
-        </li>
-        <li class="main-slide" style="background-image:url(/slider/1.jpg)"></li>
-        <li class="main-slide" style="background-image:url(/slider/2.jpg)"></li>
-        <li class="main-slide" style="background-image:url(/slider/3.jpg)">
-            <a href="/" class="caption">
-                <p>Musha</p>
-                <p>Best Interior Design</p>
-                <p>Luxury Simplified</p>
-            </a>
-        </li>
-        <li class="main-slide" style="background-image:url(/slider/6.jpg)">
-            <a href="/" class="caption">
-                <p>Musha</p>
-                <p>Best Interior Design</p>
-                <p>Luxury Simplified</p>
-            </a>
-        </li>
-        <li class="main-slide" style="background-image:url(/slider/5.jpg)">
-            <a href="/" class="caption">
-                <p>Musha</p>
-                <p>Best Interior Design</p>
-                <p>Luxury Simplified</p>
-            </a>
-        </li>
-        <li class="main-slide" style="background-image:url(/slider/6.jpg)">
-            <a href="/" class="caption">
-                <p>Winner</p>
-                <p>Hotel Interiors Project of the Year</p>
-                <p>Musha interior</p>
-            </a>
-        </li>
-        <li class="main-slide" style="background-image:url(/slider/3.jpg)"></li>
-        <li class="main-slide" style="background-image:url(/slider/6.jpg)"></li>
-    </ul>
-</div>
-<!-- .content-wrapper -->
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        @foreach($slide as $key => $slidePicture)
+        <div class="carousel-item {{$key == 0 ? 'active' : '' }}">
+          <img class="d-block w-100" src="/storage/{{$slidePicture->imagePath}}" alt="First slide">
+          <div class="carousel-caption d-none d-md-block">
+            <h5 style="color: #fff;">{{$slidePicture->title}}</h5>
+            <p>{{$slidePicture->title2}}</p>
+            <p>{{$slidePicture->title3}}</p>
+          </div>
+        </div>
+        @endforeach
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 @endsection

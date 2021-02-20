@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\aboutSections;
 use Illuminate\Http\Request;
 use App\product;
+use App\team_profiles;
 use Illuminate\Support\Facades\View;
 
 class pagesController extends Controller
@@ -31,7 +32,10 @@ class pagesController extends Controller
 
     public function about(){
         $sections = aboutSections::all();
-        return view('about')->with('sections',$sections);
+        $team = team_profiles::all();
+        return view('about')
+        ->with('sections',$sections)
+        ->with('team',$team);
     }
   
 }

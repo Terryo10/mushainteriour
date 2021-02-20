@@ -1,5 +1,6 @@
 <?php
 
+use App\sliderImages;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $slide = sliderImages::all();
+    return view('welcome')->with('slide',$slide);
 });
 
 Auth::routes();

@@ -5,7 +5,7 @@
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
     <meta charset="UTF-8">
-    <title>{{ config('app.name', 'Laravel')}}</title>
+    <title>Musha Luxury Interiors</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link href="{{asset('fontawsome/css/all.css')}}" rel="stylesheet">
@@ -24,16 +24,29 @@
 <!-- / Yoast SEO plugin. -->
   <!-- Styles  laravel bootstrap-->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
- <script src="{{ asset('js/app.js') }}" defer></script>
+ <script src="{{ asset('js/app.js') }}"></script>
+     <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/5f46d72c1e7ade5df4443ffb/default';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
 <link rel='dns-prefetch' href='http://s.w.org/' />
 <link rel="alternate" type="application/rss+xml" title="Musha Interior &raquo; Feed" href="feed/index.html" />
 <link rel="alternate" type="application/rss+xml" title="Musha Interior &raquo; Comments Feed" href="comments/feed/index.html" />
-<link rel='stylesheet' id='wp-pagenavi-css'  href='{{asset('front/wp-content/plugins/wp-pagenavi/pagenavi-css44fd.css?ver=2.70')}}' type='text/css' media='all' />
+{{-- <link rel='stylesheet' id='wp-pagenavi-css'  href='{{asset('front/wp-content/plugins/wp-pagenavi/pagenavi-css44fd.css?ver=2.70')}}' type='text/css' media='all' /> --}}
 <link rel='stylesheet' id='xtheme-layout-css'  href='{{asset('front/wp-content/themes/GoddardLittlefair2016/css/layout5152.css?ver=1.0')}}' type='text/css' media='all' />
-<script type='text/javascript' src='{{asset('front/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4')}}'> </script>
+{{-- <script type='text/javascript' src='{{asset('front/wp-includes/js/jquery/jqueryb8ff.js?ver=1.12.4')}}'> </script> --}}
 <link rel='https://api.w.org/' href='wp-json/index.html' />
-<link rel="alternate" type="application/json+oembed" href="wp-json/oembed/1.0/embed97f1.json?url=http%3A%2F%2Fwww.goddardlittlefair.com%2F" />
-<link rel="alternate" type="text/xml+oembed" href="wp-json/oembed/1.0/embedc216?url=http%3A%2F%2Fwww.goddardlittlefair.com%2F&amp;format=xml" />
+{{-- <link rel="alternate" type="application/json+oembed" href="wp-json/oembed/1.0/embed97f1.json?url=http%3A%2F%2Fwww.goddardlittlefair.com%2F" /> --}}
+{{-- <link rel="alternate" type="text/xml+oembed" href="wp-json/oembed/1.0/embedc216?url=http%3A%2F%2Fwww.goddardlittlefair.com%2F&amp;format=xml" /> --}}
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon-precomposed" href="apple-touch-icon.png">
     <meta name="msapplication-TileImage" content="/win8-tile-icon.png">
@@ -101,21 +114,15 @@
             </div>
         </footer>
     </div><!-- .page-wrapper -->
-    <div class="webstat">
-        <script type="text/javascript" language="JavaScript" src="http://hv3.webstat.com/cgi-bin/wsv2.cgi?144268"></script>
-        <noscript>
-            <a href="http://www.webstat.com/">
-            <img src="http://hv3.webstat.com/scripts/wsb.php?ac=144268" border="0" alt="Website Analytics and Website Statistics by WebSTAT" /></a>
-        </noscript>
-    </div>
+   
 <script type='text/javascript'>
 /* <![CDATA[ */
 var wpcf7 = {"apiSettings":{"root":"http:\/\/www.goddardlittlefair.com\/wp-json\/contact-form-7\/v1","namespace":"contact-form-7\/v1"},"recaptcha":{"messages":{"empty":"Please verify that you are not a robot."}}};
 /* ]]> */
 </script>
-<script type='text/javascript' src='{{asset('front/wp-content/plugins/contact-form-7/includes/js/scriptsce52.js?ver=5.0.2')}}'></script>
-<script type='text/javascript' src='{{asset('front/wp-content/themes/GoddardLittlefair2016/js/site.min5152.js?ver=1.0')}}'></script>
-<script type='text/javascript' src='{{asset('front/wp-includes/js/wp-embed.mind8f3.js?ver=4.9.12')}}'></script>
+{{-- <script type='text/javascript' src='{{asset('front/wp-content/plugins/contact-form-7/includes/js/scriptsce52.js?ver=5.0.2')}}'></script> --}}
+{{-- <script type='text/javascript' src='{{asset('front/wp-content/themes/GoddardLittlefair2016/js/site.min5152.js?ver=1.0')}}'></script> --}}
+{{-- <script type='text/javascript' src='{{asset('front/wp-includes/js/wp-embed.mind8f3.js?ver=4.9.12')}}'></script> --}}
 </div>
 </body>
 
