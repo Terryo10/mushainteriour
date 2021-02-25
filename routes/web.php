@@ -55,6 +55,4 @@ Route::resource('projects_cat','ProjectCategoryController');
 Route::resource('projects','ProjectsController');
 Route::Post('placeorder','ProductController@store')->name('place.order');
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
+

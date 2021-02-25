@@ -12,6 +12,7 @@
         "artesaos/seotools": "^0.18.0",
         "braintree/braintree_php": "^5.2",
         "doctrine/dbal": "^2.10",
+        "encore/laravel-admin": "^1.8",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -20,7 +21,6 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "paynow/php-sdk": "^1.0",
-        "tcg/voyager": "^1.4",
         "webdevetc/blogetc": "^7.3"
     },
     "require-dev": {
@@ -67,11 +67,5 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
-    },
-    "repositories": {
-        "hooks": {
-            "type": "composer",
-            "url": "https://larapack.io"
-        }
     }
 }
