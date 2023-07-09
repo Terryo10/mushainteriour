@@ -25,7 +25,7 @@
         <p class="lead">{!!$section->body!!} </p>
     </div>
       <div class="col-md-5">
-      <img class="img-fluid" src="/storage/{{$section->image_path}}" style="width:500; height:500;"> 
+      <img class="img-fluid" src="/upload/{{$section->image_path}}" style="width:500; height:500;"> 
       </div>
     </div>
 
@@ -39,7 +39,7 @@
     <div class="row">
       @foreach ($team as $team)
       <div class="col-lg-4">
-      <img class="img-thumbnail" src="/storage/{{$team->image_path}}" >
+      <img class="img-thumbnail" src="/upload/{{$team->image_path}}" >
           <h2>
             {{$team->title}}
             </h2>

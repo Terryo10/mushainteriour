@@ -52,8 +52,8 @@ class User extends Authenticatable
         // Maybe you can just hardcode in a user id that you
         //   know is always an admin ID?
 
-        if (       $this->id === 1
-             && $this->email === "tapiwatererai395@gmail.com"
+        if (       
+             $this->email === "tapiwatererai395@gmail.com" || $this->email === "leengapare@gmail.com" 
            ){
 
            // return true so this user CAN edit/post/delete

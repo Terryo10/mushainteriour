@@ -1,6 +1,8 @@
 <?php
 
 use App\sliderImages;
+use App\IndexPageComponents;
+use Doctrine\DBAL\Schema\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $slide = sliderImages::all();
-    return view('welcome')->with('slide',$slide);
+    $sections = IndexPageComponents::all();
+    return view('welcome')->with('slide',$slide)->with('sections',$sections);
 });
 
 Auth::routes();
@@ -26,6 +29,7 @@ Route::get('cart/delete', 'CartController@deleteCartItem')->middleware('auth');
 Route::post('cart/save', 'CartController@savecartweb')->name('savetocart')->middleware('auth');
 Route::get('checkout/paynow','pagesController@eco')->middleware('auth');
 Route::post('make_payment', 'CartController@mobilePaymentweb')->name('make_payment');
+Route::get('category/{id}','pagesController@category');
 Route::get('shop','pagesController@shop');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('about','pagesController@about');
@@ -51,8 +55,8 @@ Route::resource('product','ProductController');
 // Route::get('orders','OrdersController@index');
 // Route::get('parent/{id}','OrdersController@parent');
 // });
-Route::resource('projects_cat','ProjectCategoryController');
-Route::resource('projects','ProjectsController');
+// Route::resource('projects_cat','ProjectCategoryController');
+Route::get('projects','ProjectsController@index');
 Route::Post('placeorder','ProductController@store')->name('place.order');
 
 

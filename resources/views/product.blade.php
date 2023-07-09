@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card" >
-                    <img src="/storage/{{$product->imagePath}}" class="card-img-top" alt="...">
+                    <img src="/upload/{{$product->imagePath}}" class="card-img-top" alt="...">
                     <div class="card-body">
 
                         <div class="product-details">

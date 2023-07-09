@@ -15,8 +15,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $project = projects::all();
-        return view('admin.projects.index')->with('project',$project);
+        $projects = projects::all();
+        return view('projectcat')->with('projects',$projects);
     }
 
     /**
